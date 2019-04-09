@@ -28,39 +28,44 @@ class Person:
 
 
 #%%
+import imutils
+from imutils.object_detection import non_max_suppression
+from imutils import paths
+
+# initialise Histogram of Oriented Gradients descriptor
+# set Support Vector Machine to be pre-trained detector
+hog = cv2.HOGDescriptor()
+hog.setSVMDetector(cv2.HOGDescriptor_getDefaultPeopleDetector())
+#%%
 background = cv2.imread('counter/photo1/background.jpg',
                         0)  # read image file in grayscale, to np array
 # dis_im(background)
 frame1 = cv2.imread('counter/photo1/2019-04-05_1232.jpg', 0)
 # dis_im(frame1)
-frame = cv2.imread('counter/photo1/2019-04-05_1232.jpg')
+frame = cv2.imread('/Volumes/Media/Dls/persons/person_266.bmp')
 frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+frame = imutils.resize(frame, width=min(400, frame.shape[1]))
 # dis_im(frame)
 
-frame_delta = cv2.absdiff(background, frame1)
+# non-max supression combines multiple, overlapping bounding boxes to a single bounding box
 
-# dis_im(frame_delta)
-thresh = cv2.threshold(frame_delta, 200, 255, cv2.THRESH_BINARY)[1]
-thresh = cv2.dilate(thresh, None, iterations=2)
-# dis_im(thresh)
-contours = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL,
-                            cv2.CHAIN_APPROX_SIMPLE)[0]
-dis_im(thresh)
+# detect people in the image
+(rects, weights) = hog.detectMultiScale(
+    frame, winStride=(4, 4), padding=(8, 8), scale=1.05)
 
-print(len(contours))
-ppl = 0
-for c in contours:
-    # dis_im(c)
-    # print(c.shape)
-    if cv2.contourArea(c) < 1000:  # proceed to next loop if area too small
-        continue
-    ppl += 1
-    (x, y, w, h) = cv2.boundingRect(c)
-    cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 2)
-    rectagleCenterPont = ((x + x + w) // 2, (y + y + h) // 2)
-    cv2.circle(frame, rectagleCenterPont, 1, (0, 0, 255), 5)
-    # dis_im(frame1)
+# draw the original bounding boxes
+for (x, y, w, h) in rects:
+    cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 0, 255), 2)
+
+# apply non-maxima suppression to the bounding boxes using a
+# fairly large overlap threshold to try to maintain overlapping
+# boxes that are still people
+rects = np.array([[x, y, x + w, y + h] for (x, y, w, h) in rects])
+pick = non_max_suppression(rects, probs=None, overlapThresh=0.65)
+
+# draw the final bounding boxes
+for (xA, yA, xB, yB) in pick:
+    cv2.rectangle(frame, (xA, yA), (xB, yB), (0, 255, 0), 2)
 
 dis_im(frame)
-print(ppl)
-#%%
+print(len(pick))
