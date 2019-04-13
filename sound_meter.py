@@ -1,4 +1,3 @@
-import random
 import time
 import backend
 
@@ -15,7 +14,7 @@ def main():
         print(f'{localtime}: Noise={node.val}')
 
         # sleep
-        time.sleep(10)
+        time.sleep(60)
 
 if __name__ == "__main__":
     main()

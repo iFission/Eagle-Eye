@@ -1,5 +1,6 @@
 from libdw import pyrebase
 import argparse
+import time
 
 
 def get_room_arg():
@@ -58,3 +59,10 @@ class FireBaseNode():
         if not 'w' in self.mode:
             return
         self.node().set(new_val)
+
+    def append(self, data, timestamp=None):
+        if not 'a' in self.mode:
+            return
+        if timestamp is None:
+            timestamp = time.time()
+        self.node().child(str(int(timestamp))).set(data)
