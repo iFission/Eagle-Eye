@@ -42,10 +42,16 @@ def convert_time_table(lst):
 # z = time_table('8:30:30')
 # convert_time_table(z)
 #%%
-def multiple_linear_regression(bunchobject, x_index, y_index, order, size,
-                               seed):
-    x = bunchobject.data[:, [x_index]]
-    y = bunchobject.data[:, [y_index]]
+def getData1():
+    with open('Monday data.csv', newline='') as csvfile:
+        data = np.array(list(csv.reader(csvfile)))
+        data = data.astype(np.float)
+    return data
+
+
+def multiple_linear_regression1(bunchobject1, order, size, seed):
+    x = bunchobject.data[:, [0]]
+    y = bunchobject.data[:, [1]]
     poly = PolynomialFeatures(order, include_bias=False)
     # the PolynomialFeatures class with order can
     #give u all the coefficient
@@ -78,11 +84,15 @@ def multiple_linear_regression(bunchobject, x_index, y_index, order, size,
     ]], y_pred, results, coefficient, intercept
 
 
-b = datasets.load_breast_cancer()
-multiple_linear_regression(b, 0, 3, 4, 0.4, 2752)
+bunchobject1 = getData1()
+multiple_linear_regression1(bunchobject1, 5, 0.4, 2752)
+
+# b = datasets.load_breast_cancer()
+# multiple_linear_regression(b, 0, 3, 4, 0.4, 2752)
 
 
-def Liner_formula(t):
+#%%
+def Liner_formula1(t):
     index = 0
     y = 0
     while index < len(multiple_linear_regression.coefficient):
@@ -97,22 +107,12 @@ def result(t):
     people_lst = []
     key_list = convert_time_table(time_list)
     while index < len(time_list) + 1:
-        number_of_people = Liner_formula(time_list[index])
+        number_of_people = Liner_formula1(time_list[index])
         people_lst.append(number_of_people)
         index += 1
     output = {(key, value) for (key, value) in zip(key_list, people_lst)}
     return output
 
 
-#%%
-ls = [2, 3, 4, 5, 6]
-first_three = ls[:3]
-middle = ls[:]
-print(middle)
-x = '8:30'
-print(x[0])
-
-y = ['28', '12']
-print(int(y[0]))
-print(9 // 2)
-print(list(range(2, 5, 2)))
+# change the result to the numpy array
+# need the weekday as the input, creat 7 model to model 7 days
