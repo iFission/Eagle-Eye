@@ -16,19 +16,32 @@ def get_weekday_minutes(timestamp=-1):
     return weekday, minutes
 
 
+WEEKDAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thuresday', 'Friday', 'Saturday', 'Sunday']
+
 def convert_input(data):
-    x, y = [], []
+    train_set = {}
+    for d in WEEKDAYS:
+        train_set[d] = [], []
+
     for t, num_people in data.items():
         weekday, minutes = get_weekday_minutes(int(t))
+        train_set[WEEKDAYS[weekday]][0].append([minutes*60])
+        train_set[WEEKDAYS[weekday]][1].append([num_people])
+    for d in WEEKDAYS:
+        train_set[d] = np.array(train_set[d][0]), np.array(train_set[d][1])
+    
+    # temporary code
+    train_set['Monday'] = train_set['Friday']
+    train_set['Tuesday'] = train_set['Friday']
+    train_set['Wednesday'] = train_set['Friday']
+    train_set['Sunday'] = train_set['Friday']
 
-        x.append([weekday, minutes])
-        y.append([num_people])
-    return np.array(x), np.array(y)
+    return train_set
 
 
 def get_future_time_points():
     weekday, minutes = get_weekday_minutes()
-    return np.array([[weekday, m] for m in range(minutes, 60 * 24, 10)])
+    return WEEKDAYS[weekday], np.array([[m*60] for m in range(minutes, 60 * 24, 10)])
 
 def upload(x, y, node):
     content = {}
@@ -36,29 +49,28 @@ def upload(x, y, node):
         content[f'{x[i][0]}-{x[i][1]}'] = int(y[i][0])
     node.val = content
 
+def train(trainset):
+    for day, (x, y) in trainset.items():
+        import matplotlib.pyplot as plt
+        plt.scatter(x, y)
+        plt.show()
+
+def predict(day, minutes):
+    pass
+
 def main():
-    room = backend.get_room_arg()
+    room = 'Debug_Alex' #backend.get_room_arg()
     input_node = backend.FireBaseNode('NumberOfPeople', room, mode='r')
-    prediction_node = backend.FireBaseNode('Prediction', room)
 
     # convert data to numpy
-    x_train, y_train = convert_input(input_node.val)
-    x_predict = get_future_time_points()
+    trainset = convert_input(input_node.val)
+    predict_day, predict_time = get_future_time_points()
 
     # Train model
-
-    # Write your code here
-    # eg. xxx.fit(x_train, y_train)
+    train(trainset)
 
     # Predict future time points
-
-    # Write your code here
-    # eg. y_predict = xxx.predict(x_predict)
-    y_predict = np.random.randint(0, 10, (x_predict.shape[0], 1))
-
-    # Upload to firebase
-    upload(x_predict, y_predict, prediction_node)
-
+    prediction = predict(predict_day, predict_time)
 
 if __name__ == "__main__":
     main()
