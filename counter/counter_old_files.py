@@ -178,17 +178,24 @@ def main():
     node = backend.FireBaseNode('NumberOfPeople', mode='a')
     while True:
         # Write your code here
-        timestamp = int(time.time() // 60 * 60)
-        print(timestamp)
+        # timestamp = int(time.time() // 60 * 60)
+        t_ls, i_ls = get_images_path(path)
+        print(t_ls, i_ls)
 
-        num_people = count_people_now(timestamp, path)
+        for timestamp in tqdm(t_ls):
+            try:
+                num_people = count_people_now(timestamp, path)
+            except Exception as e:
+                print(e)
+                print(timestamp)
+                input("Press anykey to continue")
+                num_people = 0
+            # num_people = np.random.randint(0, 2)
 
-        # num_people = np.random.randint(0, 2)
-
-        # Upload to firebase
-        node.append(num_people, timestamp=timestamp)
-        localtime = time.asctime(time.localtime(time.time()))
-        # print(f'{localtime}: NumberOfPeople={num_people}')
+            # Upload to firebase
+            node.append(num_people, timestamp=timestamp)
+            localtime = time.asctime(time.localtime(time.time()))
+            # print(f'{localtime}: NumberOfPeople={num_people}')
 
 
 if __name__ == "__main__":
