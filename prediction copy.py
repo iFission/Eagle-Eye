@@ -1,3 +1,6 @@
+#%%
+
+
 def convert_to_seconds(A):
     # take one string as a input like '8:30'
     y = A.split(':')
@@ -52,12 +55,15 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import PolynomialFeatures
 
 
-def getData1():
-    userhome = os.path.expanduser('~')
-    csvfile = os.path.join(userhome, 'Desktop', 'Mondaydata.csv')
-    with open(csvfile, newline='') as csvfile:
-        data = np.array(list(csv.reader(csvfile)))
-        data = data.astype(np.float)
+# def getData1():
+#     userhome = os.path.expanduser('~')
+#     csvfile = os.path.join(userhome, 'Desktop', 'Mondaydata.csv')
+#     with open(csvfile, newline='') as csvfile:
+#         data = np.array(list(csv.reader(csvfile)))
+#         data = data.astype(np.float)
+#     return data
+def getData1(dic):
+    data = dic['Monday']
     return data
 
 
@@ -115,12 +121,8 @@ def Liner_formula1(t):
 # Liner_formula1(74500)
 
 
-def getData2():
-    userhome = os.path.expanduser('~')
-    csvfile = os.path.join(userhome, 'Desktop', 'Tuesdaydata.csv')
-    with open(csvfile, newline='') as csvfile:
-        data = np.array(list(csv.reader(csvfile)))
-        data = data.astype(np.float)
+def getData2(dic):
+    data = dic['Tuesday']
     return data
 
 
@@ -174,12 +176,8 @@ def Liner_formula2(t):
     return y
 
 
-def getData3():
-    userhome = os.path.expanduser('~')
-    csvfile = os.path.join(userhome, 'Desktop', 'wednesdaydata.csv')
-    with open(csvfile, newline='') as csvfile:
-        data = np.array(list(csv.reader(csvfile)))
-        data = data.astype(np.float)
+def getData3(dic):
+    data = dic['Wednesday']
     return data
 
 
@@ -233,12 +231,8 @@ def Liner_formula3(t):
     return y
 
 
-def getData4():
-    userhome = os.path.expanduser('~')
-    csvfile = os.path.join(userhome, 'Desktop', 'thursdaydata.csv')
-    with open(csvfile, newline='') as csvfile:
-        data = np.array(list(csv.reader(csvfile)))
-        data = data.astype(np.float)
+def getData4(dic):
+    data = dic['Thursday']
     return data
 
 
@@ -292,12 +286,8 @@ def Liner_formula4(t):
     return y
 
 
-def getData5():
-    userhome = os.path.expanduser('~')
-    csvfile = os.path.join(userhome, 'Desktop', 'Fridaydata.csv')
-    with open(csvfile, newline='') as csvfile:
-        data = np.array(list(csv.reader(csvfile)))
-        data = data.astype(np.float)
+def getData5(dic):
+    data = dic['Friday']
     return data
 
 
@@ -351,12 +341,8 @@ def Liner_formula5(t):
     return y
 
 
-def getData6():
-    userhome = os.path.expanduser('~')
-    csvfile = os.path.join(userhome, 'Desktop', 'saturdaydata.csv')
-    with open(csvfile, newline='') as csvfile:
-        data = np.array(list(csv.reader(csvfile)))
-        data = data.astype(np.float)
+def getData6(dic):
+    data = dic['Saturday']
     return data
 
 
@@ -410,12 +396,8 @@ def Liner_formula6(t):
     return y
 
 
-def getData7():
-    userhome = os.path.expanduser('~')
-    csvfile = os.path.join(userhome, 'Desktop', 'Sundaydata.csv')
-    with open(csvfile, newline='') as csvfile:
-        data = np.array(list(csv.reader(csvfile)))
-        data = data.astype(np.float)
+def getData7(dic):
+    data = dic['Sunday']
     return data
 
 
@@ -480,13 +462,15 @@ def result1(t):
         number_of_people = Liner_formula1(time_list[index])
         people_lst.append(number_of_people)
         index += 1
+    people = np.reshape(people_lst, (len(people_lst, 1)))
+    return people
     # print(people_lst)
     # print(len(people_lst))
     #output = dic(zip(key_list,people_lst))
-    output = {}
-    for (key, value) in zip(key_list, people_lst):
-        output[key] = value
-    return output
+    # output = {}
+    # for (key, value) in zip(key_list, people_lst):
+    #     output[key] = value
+    # return output
 
 
 def result2(t):
@@ -498,10 +482,8 @@ def result2(t):
         number_of_people = Liner_formula2(time_list[index])
         people_lst.append(number_of_people)
         index += 1
-    output = {}
-    for (key, value) in zip(key_list, people_lst):
-        output[key] = value
-    return output
+    people = np.reshape(people_lst, (len(people_lst, 1)))
+    return people
 
 
 def result3(t):
@@ -513,10 +495,8 @@ def result3(t):
         number_of_people = Liner_formula3(time_list[index])
         people_lst.append(number_of_people)
         index += 1
-    output = {}
-    for (key, value) in zip(key_list, people_lst):
-        output[key] = value
-    return output
+    people = np.reshape(people_lst, (len(people_lst, 1)))
+    return people
 
 
 def result4(t):
@@ -528,10 +508,8 @@ def result4(t):
         number_of_people = Liner_formula4(time_list[index])
         people_lst.append(number_of_people)
         index += 1
-    output = {}
-    for (key, value) in zip(key_list, people_lst):
-        output[key] = value
-    return output
+    people = np.reshape(people_lst, (len(people_lst, 1)))
+    return people
 
 
 def result5(t):
@@ -543,10 +521,8 @@ def result5(t):
         number_of_people = Liner_formula5(time_list[index])
         people_lst.append(number_of_people)
         index += 1
-    output = {}
-    for (key, value) in zip(key_list, people_lst):
-        output[key] = value
-    return output
+    people = np.reshape(people_lst, (len(people_lst, 1)))
+    return people
 
 
 def result6(t):
@@ -558,10 +534,8 @@ def result6(t):
         number_of_people = Liner_formula6(time_list[index])
         people_lst.append(number_of_people)
         index += 1
-    output = {}
-    for (key, value) in zip(key_list, people_lst):
-        output[key] = value
-    return output
+    people = np.reshape(people_lst, (len(people_lst, 1)))
+    return people
 
 
 def result7(t):
@@ -574,10 +548,8 @@ def result7(t):
         people_lst.append(number_of_people)
         index += 1
     #print(time_list)
-    output = {}
-    for (key, value) in zip(key_list, people_lst):
-        output[key] = value
-    return output
+    people = np.reshape(people_lst, (len(people_lst, 1)))
+    return people
 
 
 # change the result to the numpy array
@@ -609,3 +581,18 @@ print(result('Thursday', '8:30:30'))
 print(result('Friday', '8:30:30'))
 print(result('Saturday', '8:30:30'))
 print(result('Sunday', '8:30:30'))
+
+#%%
+# import numpy as np
+# lst1 = [[1],[2],[3]]
+# Lst1 = np.array(lst1)
+# lst2 = [[5],[6],[7]]
+# Lst2 = np.array(lst2)
+# dic = {}
+# dic['Monday'] = Lst1,Lst2
+# data_1 = dic['Monday'][0]
+# print(data_1)
+
+# lst3=[1,2,3,4,5,6,7,8,9,0]
+# Lst3= np.reshape(lst3,(len(lst3),1))
+# print(Lst3)
