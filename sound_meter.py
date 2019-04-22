@@ -1,7 +1,8 @@
 import time
 import backend
-from AudioCapture.Data_Extract import dB_extraction
+#from AudioCapture.Data_Extract import dB_extraction
 #from AudioCapture.Record_Sound import record_and_write
+from AudioCapture.Stream_and_Extract import dB_extraction
 def main():
     node = backend.FireBaseNode('Noise')
     while True:
@@ -16,7 +17,7 @@ def main():
         print(f'{localtime}: Noise={node.val}')
 
         # sleep
-        time.sleep(60)
+        time.sleep(10)
 
 if __name__ == "__main__":
     main()
