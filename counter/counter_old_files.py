@@ -19,7 +19,7 @@ print(cwd)
 headshoulder_cascade = cv2.CascadeClassifier(f'{cwd}/counter/reference/HS.xml')
 
 
-def count_people(background, frame, index):
+def count_people(background, frame):
 
     # dis_im(background)
     # dis_im(frame)
@@ -63,8 +63,7 @@ def count_people(background, frame, index):
                 cv2.FONT_HERSHEY_SIMPLEX, 2, (255, 0, 0), 3, cv2.LINE_AA)
     # dis_im(diff)
     # dis_im(frame)
-    save_im(frame, f'{images_path[index]}.jpg'.replace('/photos/',
-                                                       '/photos_cv/'))
+    # save_im(frame, path)
     return (len(headshoulder_rects) + len(headshoulder_rects_2)) / 2
 
 
@@ -140,7 +139,7 @@ def count_people_now(timestamp, path):
             update_background(index)
             frame = cv2.imread(f'{images_path[index]}.jpg')
             # count = count_people(background, frame)
-            count = count_people(background, frame, index)
+            count = count_people(background, frame)
             # print(count)
             # count = np.random.randint(0, 2)
             append_dict(timestamp, count)
@@ -148,7 +147,6 @@ def count_people_now(timestamp, path):
             return count
         else:
             time.sleep(1)
-            get_images_path(path)
 
 
 # print(
@@ -174,24 +172,30 @@ import time
 import backend
 
 path = f'{cwd}/counter/images/photos'
-path_cv = f'{cwd}/counter/images/photos_cv'
 
 
 def main():
     node = backend.FireBaseNode('NumberOfPeople', mode='a')
     while True:
         # Write your code here
-        timestamp = int(time.time() // 60 * 60)
-        print(timestamp)
+        # timestamp = int(time.time() // 60 * 60)
+        t_ls, i_ls = get_images_path(path)
+        print(t_ls, i_ls)
 
-        num_people = count_people_now(timestamp, path)
+        for timestamp in tqdm(t_ls):
+            try:
+                num_people = count_people_now(timestamp, path)
+            except Exception as e:
+                print(e)
+                print(timestamp)
+                input("Press anykey to continue")
+                num_people = 0
+            # num_people = np.random.randint(0, 2)
 
-        # num_people = np.random.randint(0, 2)
-
-        # Upload to firebase
-        node.append(num_people, timestamp=timestamp)
-        localtime = time.asctime(time.localtime(time.time()))
-        print(f'{localtime}: NumberOfPeople={num_people}')
+            # Upload to firebase
+            node.append(num_people, timestamp=timestamp)
+            localtime = time.asctime(time.localtime(time.time()))
+            # print(f'{localtime}: NumberOfPeople={num_people}')
 
 
 if __name__ == "__main__":
