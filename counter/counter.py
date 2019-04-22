@@ -19,7 +19,7 @@ print(cwd)
 headshoulder_cascade = cv2.CascadeClassifier(f'{cwd}/counter/reference/HS.xml')
 
 
-def count_people(background, frame):
+def count_people(background, frame, index):
 
     # dis_im(background)
     # dis_im(frame)
@@ -63,7 +63,8 @@ def count_people(background, frame):
                 cv2.FONT_HERSHEY_SIMPLEX, 2, (255, 0, 0), 3, cv2.LINE_AA)
     # dis_im(diff)
     # dis_im(frame)
-    # save_im(frame, path)
+    save_im(frame, f'{images_path[index]}.jpg'.replace('/photos/',
+                                                       '/photos_cv/'))
     return (len(headshoulder_rects) + len(headshoulder_rects_2)) / 2
 
 
@@ -139,7 +140,7 @@ def count_people_now(timestamp, path):
             update_background(index)
             frame = cv2.imread(f'{images_path[index]}.jpg')
             # count = count_people(background, frame)
-            count = count_people(background, frame)
+            count = count_people(background, frame, index)
             # print(count)
             # count = np.random.randint(0, 2)
             append_dict(timestamp, count)
@@ -147,6 +148,7 @@ def count_people_now(timestamp, path):
             return count
         else:
             time.sleep(1)
+            get_images_path(path)
 
 
 # print(
@@ -171,7 +173,8 @@ import time
 #%%
 import backend
 
-path = f'{cwd}/counter/images/webcam_photos'
+path = f'{cwd}/counter/images/photos'
+path_cv = f'{cwd}/counter/images/photos_cv'
 
 
 def main():
@@ -188,7 +191,7 @@ def main():
         # Upload to firebase
         node.append(num_people, timestamp=timestamp)
         localtime = time.asctime(time.localtime(time.time()))
-        # print(f'{localtime}: NumberOfPeople={num_people}')
+        print(f'{localtime}: NumberOfPeople={num_people}')
 
 
 if __name__ == "__main__":
