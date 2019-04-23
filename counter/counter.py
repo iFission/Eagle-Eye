@@ -172,24 +172,35 @@ import time
 # print(time.asctime(time.localtime(time.time())))
 #%%
 import backend
+from collections import deque
 
 path = f'{cwd}/counter/images/photos'
 path_cv = f'{cwd}/counter/images/photos_cv'
 
+def mean(lst):
+    if len(lst) == 0:
+        return 0
+    else:
+        return sum(lst)/len(lst)
 
 def main():
-    node = backend.FireBaseNode('NumberOfPeople', mode='a')
+    room = backend.get_room_arg()
+    node = backend.FireBaseNode('NumberOfPeople', room, mode='a')
+    node_realtime = backend.FireBaseNode('CurrentNumberOfPeople', room)
+    num_buffer = deque(maxlen=5)
     while True:
         # Write your code here
         timestamp = int(time.time() // 60 * 60)
         print(timestamp)
 
         num_people = count_people_now(timestamp, path)
+        num_buffer.append(num_people)
 
         # num_people = np.random.randint(0, 2)
 
         # Upload to firebase
         node.append(num_people, timestamp=timestamp)
+        node_realtime.val = int(mean(num_buffer))
         localtime = time.asctime(time.localtime(time.time()))
         print(f'{localtime}: NumberOfPeople={num_people}')
 
