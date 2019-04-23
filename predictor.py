@@ -33,12 +33,6 @@ def convert_input(data):
     for d in WEEKDAYS:
         train_set[d] = np.array(train_set[d][0]), np.array(train_set[d][1])
 
-    # temporary code
-    train_set['Monday'] = train_set['Friday']
-    train_set['Tuesday'] = train_set['Friday']
-    train_set['Wednesday'] = train_set['Friday']
-    train_set['Sunday'] = train_set['Friday']
-
     return train_set
 
 
