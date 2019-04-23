@@ -100,9 +100,8 @@ def update_background(index):
     index = 0 if index - 1 < 0 else index - 1
     background = cv2.imread(f'{images_path[index]}.jpg')
     save_im(
-        background,
-        f'{images_path[index]}_background.jpg'.replace('/photos/',
-                                                       '/photos_old_cv/'))
+        background, f'{images_path[index]}_background.jpg'.replace(
+            '/photos/', '/photos_old_cv/'))
     print(f'updated background to {files[index]}')
     return True
 
@@ -149,7 +148,8 @@ def main():
 
             # upload to firebase
             node.append(num_people, timestamp=timestamp)
-            localtime = time.asctime(time.localtime(time.time()))
+            localtime = time.strftime('%Y-%m-%d %a %H:%M:%S',
+                                      time.localtime(int(timestamp)))
             print(f'{localtime}: NumberOfPeople={num_people}')
 
 

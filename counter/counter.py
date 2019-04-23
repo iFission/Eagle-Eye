@@ -101,9 +101,8 @@ def update_background(index):
     index = 0 if index - 1 < 0 else index - 1
     background = cv2.imread(f'{images_path[index]}.jpg')
     save_im(
-        background,
-        f'{images_path[index]}_background.jpg'.replace('/photos/',
-                                                       '/photos_cv/'))
+        background, f'{images_path[index]}_background.jpg'.replace(
+            '/photos/', '/photos_cv/'))
     print(f'updated background to {files[index]}')
     return True
 
@@ -141,7 +140,7 @@ def mean(lst):
 
 
 def main():
-    room = backend.get_room_arg()
+    room = 'MiniTT6'
     node = backend.FireBaseNode('NumberOfPeople', room, mode='a')
     node_realtime = backend.FireBaseNode('CurrentNumberOfPeople', room)
     num_buffer = deque(maxlen=5)
@@ -157,7 +156,8 @@ def main():
         # upload to firebase
         node.append(num_people, timestamp=timestamp)
         node_realtime.val = int(mean(num_buffer))
-        localtime = time.asctime(time.localtime(time.time()))
+        localtime = time.strftime('%Y-%m-%d %a %H:%M:%S',
+                                  time.localtime(int(timestamp)))
         print(f'{localtime}: NumberOfPeople={num_people}')
 
 
