@@ -171,7 +171,7 @@ import time
 #%%
 import backend
 
-path = f'{cwd}/counter/images/webcam_photos'
+path = f'{cwd}/counter/images/photos'
 
 
 def main():
