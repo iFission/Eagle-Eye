@@ -10,8 +10,6 @@ UI/UX Specialist: Jiazheng411
 IoT Specialist: ERJoseJohnson  
 Computer Vision Specialist: iFission
 
-***
-
 ## To run
 
 ### Raspberry Pi
@@ -46,7 +44,7 @@ requirements:
 * tqdm
 * numpy
 
-Run it in jupyter notebook
+Run counter/counter.py in jupyter notebook
 
 ### App
 
