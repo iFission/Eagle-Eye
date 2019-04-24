@@ -1,0 +1,1202 @@
+#:import win kivy.core.window
+<MenuScreen>:
+
+    BoxLayout:
+        orientation: "vertical"
+		
+        Image:
+            source: "SUTD_home.jpg" 
+            size_hint: 1,1.3
+            allow_stretch: True
+			
+        Label:
+            text: 'Choose a Location'
+            font_size: 60
+            color: 0,0,0,1      
+       
+        BoxLayout:
+            orientation: "vertical"
+            padding: 30
+			
+            Button:
+                text: 'Building2'
+                font_size:55
+                color: 0,0,0,1
+                on_touch_down: root.manager.current = 'Building2'
+                background_normal: ""
+                background_color: 0.93,0.93,0.93,1
+
+            Button:
+                text: 'Block 55'
+                font_size:55
+                color: 0,0,0,1
+                on_touch_down: root.manager.current = 'Block_55'
+                background_normal: ''
+                background_color: 0.93,0.93,0.93,1
+            
+            Button:
+                text: 'Block 57'
+                font_size:55
+                color: 0,0,0,1
+                on_touch_down: root.manager.current = 'Block_57'
+                background_normal: ''
+                background_color: 0.93,0.93,0.93,1
+    
+            Button:
+                text: 'Block 59'
+                font_size:55
+                on_touch_down: root.manager.current = 'Block_59'
+                color: 0,0,0,1
+                background_normal: ''
+                background_color: 0.93,0.93,0.93,1
+                
+        Label:
+            text: ""
+            size_hint: 1,0.7
+
+
+
+ 
+<BD2>:
+    BoxLayout:
+        orientation: "vertical"
+        spacing:25
+		
+        Button:
+            text: '<                         Building 2                          '
+            font_size: 60
+            color:0,0,0,1
+            size_hint: 1,0.07
+            on_press: root.manager.current = 'menu'
+            background_normal:""
+            background_color:1,1,1,1
+            
+        ScrollView:
+		
+            GridLayout:
+                cols:1
+                size_hint_y: None
+                row_default_height:root.height * 0.4
+                height:self.minimum_height
+                spacing: 50
+				
+                BoxLayout:
+                    orientation:"vertical"
+                    spacing:25
+                    canvas:
+                        Color:
+                            rgba:1,1,1,1
+                        Rectangle:
+                            size:self.size
+                            pos:self.pos
+                    
+                    Label:
+                        size_hint: None,None
+                        size:self.texture_size
+                        text:""
+                        font_size:15
+                   
+                    Label:
+                        size_hint: None,None
+                        size:self.texture_size
+                        text:"   Mini Think Tank 6"
+                        font_size: 50
+                        color:0,0,0,1
+                        
+                    GridLayout:
+                        cols:2
+                        Label:
+                            size_hint: 1,None
+                            size:self.texture_size
+                            text: "Crowdedness"
+                            font_size: 45
+                            color:0,0,0,1
+                        Label:
+                            size_hint: 1,None
+                            size:self.texture_size
+                            text: "Noise Level"
+                            font_size: 45
+                            color:0,0,0,1                            
+                        ProgressRing:
+							roomname: "MiniTT6"
+							ringtype: "CurrentNumberOfPeople"
+							maxcapacity: "10"	
+                        ProgressRing:
+							roomname:"MiniTT6"
+							ringtype: "Noise"
+                        
+                        
+                    Label:
+                        size_hint: 1,None
+                        size:self.texture_size
+                        text:"Popular Hours"
+                        font_size: 45
+                        color:0,0,0,1
+						
+                    BoxLayout:
+                        padding: 50
+                        HistogramView:
+							roomname: "MiniTT6"
+                    
+                BoxLayout:
+                    orientation:"vertical"
+                    spacing:25
+                    canvas:
+                        Color:
+                            rgba:1,1,1,1
+                        Rectangle:
+                            size:self.size
+                            pos:self.pos
+                    
+                    Label:
+                        size_hint: None,None
+                        size:self.texture_size
+                        text:""
+                        font_size:15
+                   
+                    Label:
+                        size_hint: None,None
+                        size:self.texture_size
+                        text:"   Mini Think Tank 5"
+                        font_size: 50
+                        color:0,0,0,1
+                        
+                    GridLayout:
+                        cols:2
+                        Label:
+                            size_hint: 1,None
+                            size:self.texture_size
+                            text: "Crowdedness"
+                            font_size: 45
+                            color:0,0,0,1
+                        Label:
+                            size_hint: 1,None
+                            size:self.texture_size
+                            text: "Noise Level"
+                            font_size: 45
+                            color:0,0,0,1                            
+                        ProgressRing:
+							roomname: "MiniTT5"
+							ringtype: "CurrentNumberOfPeople"
+							maxcapacity: "10"
+							
+                        ProgressRing:
+							roomname:"MiniTT5"
+							ringtype: "Noise"
+                        
+                        
+                    Label:
+                        size_hint: 1,None
+                        size:self.texture_size
+                        text:"Popular Hours"
+                        font_size: 45
+                        color:0,0,0,1
+						
+                    BoxLayout:
+                        padding: 50
+                        HistogramView:
+							roomname: "MiniTT5"
+
+                       
+                BoxLayout:
+                    orientation:"vertical"
+                    spacing:25
+                    canvas:
+                        Color:
+                            rgba:1,1,1,1
+                        Rectangle:
+                            size:self.size
+                            pos:self.pos
+                    
+                    Label:
+                        size_hint: None,None
+                        size:self.texture_size
+                        text:""
+                        font_size:15
+                   
+                    Label:
+                        size_hint: None,None
+                        size:self.texture_size
+                        text:"   Cohort Classroom 6"
+                        font_size: 50
+                        color:0,0,0,1
+                        
+                    GridLayout:
+                        cols:2
+                        Label:
+                            size_hint: 1,None
+                            size:self.texture_size
+                            text: "Crowdedness"
+                            font_size: 45
+                            color:0,0,0,1
+                        Label:
+                            size_hint: 1,None
+                            size:self.texture_size
+                            text: "Noise Level"
+                            font_size: 45
+                            color:0,0,0,1                            
+                        ProgressRing:
+							roomname: "CC6"
+							ringtype: "CurrentNumberOfPeople"
+							maxcapacity: "10"							
+                        ProgressRing:
+							roomname:"CC6"
+							ringtype: "Noise"                        
+                        
+                    Label:
+                        size_hint: 1,None
+                        size:self.texture_size
+                        text:"Popular Hours"
+                        font_size: 45
+                        color:0,0,0,1
+
+                    BoxLayout:
+                        padding: 50
+                        HistogramView:
+							roomname:"CC6"
+               
+<Blk_55>:
+    BoxLayout:
+        orientation: "vertical"
+        spacing:25
+        Button:
+
+            text: '<                            BLK 55                          '
+            font_size: 60
+            color:0,0,0,1
+            size_hint: 1,0.07
+            on_press: root.manager.current = 'menu'
+            background_normal:""
+            background_color:1,1,1,1
+
+            
+        ScrollView:
+            GridLayout:
+                cols:1
+                size_hint_y: None
+                row_default_height:root.height * 0.4
+                height:self.minimum_height
+                spacing: 50
+				
+				BoxLayout:
+                    orientation:"vertical"
+                    spacing:25
+                    canvas:
+                        Color:
+                            rgba:1,1,1,1
+                        Rectangle:
+                            size:self.size
+                            pos:self.pos
+                    
+                    Label:
+                        size_hint: None,None
+                        size:self.texture_size
+                        text:""
+                        font_size:15
+                   
+                    Label:
+                        size_hint: None,None
+                        size:self.texture_size
+                        text:"   Quiet Study Room"
+                        font_size: 50
+                        color:0,0,0,1
+                        
+                    GridLayout:
+                        cols:2
+                        Label:
+                            size_hint: 1,None
+                            size:self.texture_size
+                            text: "Crowdedness"
+                            font_size: 45
+                            color:0,0,0,1
+                        Label:
+                            size_hint: 1,None
+                            size:self.texture_size
+                            text: "Noise Level"
+                            font_size: 45
+                            color:0,0,0,1                            
+                        ProgressRing:
+							roomname: "Blk55_QuietStudyRoom"
+							ringtype: "CurrentNumberOfPeople"
+							maxcapacity: "11"							
+                        ProgressRing:
+							roomname:"Blk55_QuietStudyRoom"
+							ringtype: "Noise"
+							
+                    Label:
+                        size_hint: 1,None
+                        size:self.texture_size
+                        text:"Popular Hours"
+                        font_size: 45
+                        color:0,0,0,1
+						
+                    BoxLayout:
+                        padding: 50
+                        HistogramView:
+							roomname:"Blk55_QuietStudyRoom"
+							
+							
+				BoxLayout:
+                    orientation:"vertical"
+                    spacing:25
+                    canvas:
+                        Color:
+                            rgba:1,1,1,1
+                        Rectangle:
+                            size:self.size
+                            pos:self.pos
+                
+                    Label:
+                        size_hint: None,None
+                        size:self.texture_size
+                        text:""
+                        font_size:15
+                   
+                    Label:
+                        size_hint: None,None
+                        size:self.texture_size
+                        text:"   L4 Group Study Room"
+                        font_size: 50
+                        color:0,0,0,1
+                        
+                    GridLayout:
+                        cols:2
+                        Label:
+                            size_hint: 1,None
+                            size:self.texture_size
+                            text: "Crowdedness"
+                            font_size: 45
+                            color:0,0,0,1
+                        Label:
+                            size_hint: 1,None
+                            size:self.texture_size
+                            text: "Noise Level"
+                            font_size: 45
+                            color:0,0,0,1                            
+                        ProgressRing:
+							roomname: "Blk55_L4"
+							ringtype: "CurrentNumberOfPeople"
+							maxcapacity: "10"							
+                        ProgressRing:
+							roomname:"Blk55_L4"
+							ringtype: "Noise"
+                        
+                    Label:
+                        size_hint: 1,None
+                        size:self.texture_size
+                        text:"Popular Hours"
+                        font_size: 45
+                        color:0,0,0,1
+
+                    BoxLayout:
+                        padding: 50
+                        HistogramView:
+							roomname:"Blk55_L4"
+
+				BoxLayout:
+                    orientation:"vertical"
+                    spacing:25
+                    canvas:
+                        Color:
+                            rgba:1,1,1,1
+                        Rectangle:
+                            size:self.size
+                            pos:self.pos
+                    
+                    Label:
+                        size_hint: None,None
+                        size:self.texture_size
+                        text:""
+                        font_size:15
+                   
+                    Label:
+                        size_hint: None,None
+                        size:self.texture_size
+                        text:"   L6 Group Study Room"
+                        font_size: 50
+                        color:0,0,0,1
+                        
+                    GridLayout:
+                        cols:2
+                        Label:
+                            size_hint: 1,None
+                            size:self.texture_size
+                            text: "Crowdedness"
+                            font_size: 45
+                            color:0,0,0,1
+                        Label:
+                            size_hint: 1,None
+                            size:self.texture_size
+                            text: "Noise Level"
+                            font_size: 45
+                            color:0,0,0,1                            
+                        ProgressRing:
+							roomname: "Blk55_L6"
+							ringtype: "CurrentNumberOfPeople"
+							maxcapacity: "10"
+							
+                        ProgressRing:
+							roomname:"Blk55_L6"
+							ringtype: "Noise"
+                        
+                        
+                    Label:
+                        size_hint: 1,None
+                        size:self.texture_size
+                        text:"Popular Hours"
+                        font_size: 45
+                        color:0,0,0,1
+
+                    BoxLayout:
+                        padding: 50
+                        HistogramView:
+							roomname:"Blk55_L6"
+
+
+				BoxLayout:
+                    orientation:"vertical"
+                    spacing:25
+                    canvas:
+                        Color:
+                            rgba:1,1,1,1
+                        Rectangle:
+                            size:self.size
+                            pos:self.pos
+                    
+                    Label:
+                        size_hint: None,None
+                        size:self.texture_size
+                        text:""
+                        font_size:15
+                   
+                    Label:
+                        size_hint: None,None
+                        size:self.texture_size
+                        text:"   L7 Meeting Room"
+                        font_size: 50
+                        color:0,0,0,1
+                        
+                    GridLayout:
+                        cols:2
+                        Label:
+                            size_hint: 1,None
+                            size:self.texture_size
+                            text: "Crowdedness"
+                            font_size: 45
+                            color:0,0,0,1
+                        Label:
+                            size_hint: 1,None
+                            size:self.texture_size
+                            text: "Noise Level"
+                            font_size: 45
+                            color:0,0,0,1                            
+                        ProgressRing:
+							roomname: "Blk55_L7"
+							ringtype: "CurrentNumberOfPeople"
+							maxcapacity: "10"
+							
+                        ProgressRing:
+							roomname:"Blk55_L7"
+							ringtype: "Noise"
+                        
+                        
+                    Label:
+                        size_hint: 1,None
+                        size:self.texture_size
+                        text:"Popular Hours"
+                        font_size: 45
+                        color:0,0,0,1
+                    
+					BoxLayout:
+                        padding: 50
+                        HistogramView:
+							roomname:"Blk55_L7"
+
+				BoxLayout:
+                    orientation:"vertical"
+                    spacing:25
+                    canvas:
+                        Color:
+                            rgba:1,1,1,1
+                        Rectangle:
+                            size:self.size
+                            pos:self.pos
+                    
+                    Label:
+                        size_hint: None,None
+                        size:self.texture_size
+                        text:""
+                        font_size:15
+                   
+                    Label:
+                        size_hint: None,None
+                        size:self.texture_size
+                        text:"   L9 Meeting Room"
+                        font_size: 50
+                        color:0,0,0,1
+                        
+                    GridLayout:
+                        cols:2
+                        Label:
+                            size_hint: 1,None
+                            size:self.texture_size
+                            text: "Crowdedness"
+                            font_size: 45
+                            color:0,0,0,1
+                        Label:
+                            size_hint: 1,None
+                            size:self.texture_size
+                            text: "Noise Level"
+                            font_size: 45
+                            color:0,0,0,1                            
+                        ProgressRing:
+							roomname: "Blk55_L9"
+							ringtype: "CurrentNumberOfPeople"
+							maxcapacity: "10"							
+                        ProgressRing:
+							roomname:"Blk55_L9"
+							ringtype: "Noise"
+                        
+                    Label:
+                        size_hint: 1,None
+                        size:self.texture_size
+                        text:"Popular Hours"
+                        font_size: 45
+                        color:0,0,0,1
+                    
+					BoxLayout:
+                        padding: 50
+                        HistogramView:
+							roomname:"Blk55_L9"							
+
+
+
+						
+<Blk_57>:
+    BoxLayout:
+        orientation: "vertical"
+        spacing:25
+        Button:
+
+            text: '<                            BLK 57                          '
+            font_size: 60
+            color:0,0,0,1
+            size_hint: 1,0.07
+            on_press: root.manager.current = 'menu'
+            background_normal:""
+            background_color:1,1,1,1
+
+            
+        ScrollView:
+            GridLayout:
+                cols:1
+                size_hint_y: None
+                row_default_height:root.height * 0.4
+                height:self.minimum_height
+                spacing: 50
+				
+				BoxLayout:
+                    orientation:"vertical"
+                    spacing:25
+                    canvas:
+                        Color:
+                            rgba:1,1,1,1
+                        Rectangle:
+                            size:self.size
+                            pos:self.pos
+                    
+                    Label:
+                        size_hint: None,None
+                        size:self.texture_size
+                        text:""
+                        font_size:15
+                   
+                    Label:
+                        size_hint: None,None
+                        size:self.texture_size
+                        text:"   Quiet Study Room"
+                        font_size: 50
+                        color:0,0,0,1
+                        
+                    GridLayout:
+                        cols:2
+                        Label:
+                            size_hint: 1,None
+                            size:self.texture_size
+                            text: "Crowdedness"
+                            font_size: 45
+                            color:0,0,0,1
+                        Label:
+                            size_hint: 1,None
+                            size:self.texture_size
+                            text: "Noise Level"
+                            font_size: 45
+                            color:0,0,0,1                            
+                        ProgressRing:
+							roomname: "Blk57_QuietStudyRoom"
+							ringtype: "CurrentNumberOfPeople"
+							maxcapacity: "11"							
+                        ProgressRing:
+							roomname:"Blk57_QuietStudyRoom"
+							ringtype: "Noise"
+							
+                    Label:
+                        size_hint: 1,None
+                        size:self.texture_size
+                        text:"Popular Hours"
+                        font_size: 45
+                        color:0,0,0,1
+						
+                    BoxLayout:
+                        padding: 50
+                        HistogramView:
+							roomname:"Blk57_QuietStudyRoom"
+							
+							
+				BoxLayout:
+                    orientation:"vertical"
+                    spacing:25
+                    canvas:
+                        Color:
+                            rgba:1,1,1,1
+                        Rectangle:
+                            size:self.size
+                            pos:self.pos
+                
+                    Label:
+                        size_hint: None,None
+                        size:self.texture_size
+                        text:""
+                        font_size:15
+                   
+                    Label:
+                        size_hint: None,None
+                        size:self.texture_size
+                        text:"   L4 Group Study Room"
+                        font_size: 50
+                        color:0,0,0,1
+                        
+                    GridLayout:
+                        cols:2
+                        Label:
+                            size_hint: 1,None
+                            size:self.texture_size
+                            text: "Crowdedness"
+                            font_size: 45
+                            color:0,0,0,1
+                        Label:
+                            size_hint: 1,None
+                            size:self.texture_size
+                            text: "Noise Level"
+                            font_size: 45
+                            color:0,0,0,1                            
+                        ProgressRing:
+							roomname: "Blk57_L4"
+							ringtype: "CurrentNumberOfPeople"
+							maxcapacity: "10"							
+                        ProgressRing:
+							roomname:"Blk57_L4"
+							ringtype: "Noise"
+                        
+                    Label:
+                        size_hint: 1,None
+                        size:self.texture_size
+                        text:"Popular Hours"
+                        font_size: 45
+                        color:0,0,0,1
+
+                    BoxLayout:
+                        padding: 50
+                        HistogramView:
+							roomname:"Blk57_L4"
+
+				BoxLayout:
+                    orientation:"vertical"
+                    spacing:25
+                    canvas:
+                        Color:
+                            rgba:1,1,1,1
+                        Rectangle:
+                            size:self.size
+                            pos:self.pos
+                    
+                    Label:
+                        size_hint: None,None
+                        size:self.texture_size
+                        text:""
+                        font_size:15
+                   
+                    Label:
+                        size_hint: None,None
+                        size:self.texture_size
+                        text:"   L6 Group Study Room"
+                        font_size: 50
+                        color:0,0,0,1
+                        
+                    GridLayout:
+                        cols:2
+                        Label:
+                            size_hint: 1,None
+                            size:self.texture_size
+                            text: "Crowdedness"
+                            font_size: 45
+                            color:0,0,0,1
+                        Label:
+                            size_hint: 1,None
+                            size:self.texture_size
+                            text: "Noise Level"
+                            font_size: 45
+                            color:0,0,0,1                            
+                        ProgressRing:
+							roomname: "Blk57_L6"
+							ringtype: "CurrentNumberOfPeople"
+							maxcapacity: "10"
+							
+                        ProgressRing:
+							roomname:"Blk57_L6"
+							ringtype: "Noise"
+                        
+                        
+                    Label:
+                        size_hint: 1,None
+                        size:self.texture_size
+                        text:"Popular Hours"
+                        font_size: 45
+                        color:0,0,0,1
+
+                    BoxLayout:
+                        padding: 50
+                        HistogramView:
+							roomname:"Blk57_L6"
+
+
+				BoxLayout:
+                    orientation:"vertical"
+                    spacing:25
+                    canvas:
+                        Color:
+                            rgba:1,1,1,1
+                        Rectangle:
+                            size:self.size
+                            pos:self.pos
+                    
+                    Label:
+                        size_hint: None,None
+                        size:self.texture_size
+                        text:""
+                        font_size:15
+                   
+                    Label:
+                        size_hint: None,None
+                        size:self.texture_size
+                        text:"   L7 Meeting Room"
+                        font_size: 50
+                        color:0,0,0,1
+                        
+                    GridLayout:
+                        cols:2
+                        Label:
+                            size_hint: 1,None
+                            size:self.texture_size
+                            text: "Crowdedness"
+                            font_size: 45
+                            color:0,0,0,1
+                        Label:
+                            size_hint: 1,None
+                            size:self.texture_size
+                            text: "Noise Level"
+                            font_size: 45
+                            color:0,0,0,1                            
+                        ProgressRing:
+							roomname: "Blk57_L7"
+							ringtype: "CurrentNumberOfPeople"
+							maxcapacity: "10"
+							
+                        ProgressRing:
+							roomname:"Blk57_L7"
+							ringtype: "Noise"
+                        
+                        
+                    Label:
+                        size_hint: 1,None
+                        size:self.texture_size
+                        text:"Popular Hours"
+                        font_size: 45
+                        color:0,0,0,1
+                    
+					BoxLayout:
+                        padding: 50
+                        HistogramView:
+							roomname:"Blk57_L7"
+
+				BoxLayout:
+                    orientation:"vertical"
+                    spacing:25
+                    canvas:
+                        Color:
+                            rgba:1,1,1,1
+                        Rectangle:
+                            size:self.size
+                            pos:self.pos
+                    
+                    Label:
+                        size_hint: None,None
+                        size:self.texture_size
+                        text:""
+                        font_size:15
+                   
+                    Label:
+                        size_hint: None,None
+                        size:self.texture_size
+                        text:"   L9 Meeting Room"
+                        font_size: 50
+                        color:0,0,0,1
+                        
+                    GridLayout:
+                        cols:2
+                        Label:
+                            size_hint: 1,None
+                            size:self.texture_size
+                            text: "Crowdedness"
+                            font_size: 45
+                            color:0,0,0,1
+                        Label:
+                            size_hint: 1,None
+                            size:self.texture_size
+                            text: "Noise Level"
+                            font_size: 45
+                            color:0,0,0,1                            
+                        ProgressRing:
+							roomname: "Blk57_L9"
+							ringtype: "CurrentNumberOfPeople"
+							maxcapacity: "10"							
+                        ProgressRing:
+							roomname:"Blk57_L9"
+							ringtype: "Noise"
+                        
+                    Label:
+                        size_hint: 1,None
+                        size:self.texture_size
+                        text:"Popular Hours"
+                        font_size: 45
+                        color:0,0,0,1
+                    
+					BoxLayout:
+                        padding: 50
+                        HistogramView:
+							roomname:"Blk57_L9"				
+
+
+<Blk_59>:
+    BoxLayout:
+        orientation: "vertical"
+        spacing:25
+        Button:
+
+            text: '<                            BLK 55                          '
+            font_size: 60
+            color:0,0,0,1
+            size_hint: 1,0.07
+            on_press: root.manager.current = 'menu'
+            background_normal:""
+            background_color:1,1,1,1
+
+            
+        ScrollView:
+            GridLayout:
+                cols:1
+                size_hint_y: None
+                row_default_height:root.height * 0.4
+                height:self.minimum_height
+                spacing: 50
+				
+				BoxLayout:
+                    orientation:"vertical"
+                    spacing:25
+                    canvas:
+                        Color:
+                            rgba:1,1,1,1
+                        Rectangle:
+                            size:self.size
+                            pos:self.pos
+                    
+                    Label:
+                        size_hint: None,None
+                        size:self.texture_size
+                        text:""
+                        font_size:15
+                   
+                    Label:
+                        size_hint: None,None
+                        size:self.texture_size
+                        text:"   Quiet Study Room"
+                        font_size: 50
+                        color:0,0,0,1
+                        
+                    GridLayout:
+                        cols:2
+                        Label:
+                            size_hint: 1,None
+                            size:self.texture_size
+                            text: "Crowdedness"
+                            font_size: 45
+                            color:0,0,0,1
+                        Label:
+                            size_hint: 1,None
+                            size:self.texture_size
+                            text: "Noise Level"
+                            font_size: 45
+                            color:0,0,0,1                            
+                        ProgressRing:
+							roomname: "Blk59_QuietStudyRoom"
+							ringtype: "CurrentNumberOfPeople"
+							maxcapacity: "11"							
+                        ProgressRing:
+							roomname:"Blk59_QuietStudyRoom"
+							ringtype: "Noise"
+							
+                    Label:
+                        size_hint: 1,None
+                        size:self.texture_size
+                        text:"Popular Hours"
+                        font_size: 45
+                        color:0,0,0,1
+						
+                    BoxLayout:
+                        padding: 50
+                        HistogramView:
+							roomname:"Blk59_QuietStudyRoom"
+							
+							
+				BoxLayout:
+                    orientation:"vertical"
+                    spacing:25
+                    canvas:
+                        Color:
+                            rgba:1,1,1,1
+                        Rectangle:
+                            size:self.size
+                            pos:self.pos
+                
+                    Label:
+                        size_hint: None,None
+                        size:self.texture_size
+                        text:""
+                        font_size:15
+                   
+                    Label:
+                        size_hint: None,None
+                        size:self.texture_size
+                        text:"   L4 Group Study Room"
+                        font_size: 50
+                        color:0,0,0,1
+                        
+                    GridLayout:
+                        cols:2
+                        Label:
+                            size_hint: 1,None
+                            size:self.texture_size
+                            text: "Crowdedness"
+                            font_size: 45
+                            color:0,0,0,1
+                        Label:
+                            size_hint: 1,None
+                            size:self.texture_size
+                            text: "Noise Level"
+                            font_size: 45
+                            color:0,0,0,1                            
+                        ProgressRing:
+							roomname: "Blk59_L4"
+							ringtype: "CurrentNumberOfPeople"
+							maxcapacity: "10"							
+                        ProgressRing:
+							roomname:"Blk59_L4"
+							ringtype: "Noise"
+                        
+                    Label:
+                        size_hint: 1,None
+                        size:self.texture_size
+                        text:"Popular Hours"
+                        font_size: 45
+                        color:0,0,0,1
+
+                    BoxLayout:
+                        padding: 50
+                        HistogramView:
+							roomname:"Blk59_L4"
+
+				BoxLayout:
+                    orientation:"vertical"
+                    spacing:25
+                    canvas:
+                        Color:
+                            rgba:1,1,1,1
+                        Rectangle:
+                            size:self.size
+                            pos:self.pos
+                    
+                    Label:
+                        size_hint: None,None
+                        size:self.texture_size
+                        text:""
+                        font_size:15
+                   
+                    Label:
+                        size_hint: None,None
+                        size:self.texture_size
+                        text:"   L6 Group Study Room"
+                        font_size: 50
+                        color:0,0,0,1
+                        
+                    GridLayout:
+                        cols:2
+                        Label:
+                            size_hint: 1,None
+                            size:self.texture_size
+                            text: "Crowdedness"
+                            font_size: 45
+                            color:0,0,0,1
+                        Label:
+                            size_hint: 1,None
+                            size:self.texture_size
+                            text: "Noise Level"
+                            font_size: 45
+                            color:0,0,0,1                            
+                        ProgressRing:
+							roomname: "Blk59_L6"
+							ringtype: "CurrentNumberOfPeople"
+							maxcapacity: "10"
+							
+                        ProgressRing:
+							roomname:"Blk59_L6"
+							ringtype: "Noise"
+                        
+                        
+                    Label:
+                        size_hint: 1,None
+                        size:self.texture_size
+                        text:"Popular Hours"
+                        font_size: 45
+                        color:0,0,0,1
+
+                    BoxLayout:
+                        padding: 50
+                        HistogramView:
+							roomname:"Blk59_L6"
+
+
+				BoxLayout:
+                    orientation:"vertical"
+                    spacing:25
+                    canvas:
+                        Color:
+                            rgba:1,1,1,1
+                        Rectangle:
+                            size:self.size
+                            pos:self.pos
+                    
+                    Label:
+                        size_hint: None,None
+                        size:self.texture_size
+                        text:""
+                        font_size:15
+                   
+                    Label:
+                        size_hint: None,None
+                        size:self.texture_size
+                        text:"   L7 Meeting Room"
+                        font_size: 50
+                        color:0,0,0,1
+                        
+                    GridLayout:
+                        cols:2
+                        Label:
+                            size_hint: 1,None
+                            size:self.texture_size
+                            text: "Crowdedness"
+                            font_size: 45
+                            color:0,0,0,1
+                        Label:
+                            size_hint: 1,None
+                            size:self.texture_size
+                            text: "Noise Level"
+                            font_size: 45
+                            color:0,0,0,1                            
+                        ProgressRing:
+							roomname: "Blk59_L7"
+							ringtype: "CurrentNumberOfPeople"
+							maxcapacity: "10"
+							
+                        ProgressRing:
+							roomname:"Blk59_L7"
+							ringtype: "Noise"
+                        
+                        
+                    Label:
+                        size_hint: 1,None
+                        size:self.texture_size
+                        text:"Popular Hours"
+                        font_size: 45
+                        color:0,0,0,1
+                    
+					BoxLayout:
+                        padding: 50
+                        HistogramView:
+							roomname:"Blk59_L7"
+
+				BoxLayout:
+                    orientation:"vertical"
+                    spacing:25
+                    canvas:
+                        Color:
+                            rgba:1,1,1,1
+                        Rectangle:
+                            size:self.size
+                            pos:self.pos
+                    
+                    Label:
+                        size_hint: None,None
+                        size:self.texture_size
+                        text:""
+                        font_size:15
+                   
+                    Label:
+                        size_hint: None,None
+                        size:self.texture_size
+                        text:"   L9 Meeting Room"
+                        font_size: 50
+                        color:0,0,0,1
+                        
+                    GridLayout:
+                        cols:2
+                        Label:
+                            size_hint: 1,None
+                            size:self.texture_size
+                            text: "Crowdedness"
+                            font_size: 45
+                            color:0,0,0,1
+                        Label:
+                            size_hint: 1,None
+                            size:self.texture_size
+                            text: "Noise Level"
+                            font_size: 45
+                            color:0,0,0,1                            
+                        ProgressRing:
+							roomname: "Blk59_L9"
+							ringtype: "CurrentNumberOfPeople"
+							maxcapacity: "10"							
+                        ProgressRing:
+							roomname:"Blk59_L9"
+							ringtype: "Noise"
+                        
+                    Label:
+                        size_hint: 1,None
+                        size:self.texture_size
+                        text:"Popular Hours"
+                        font_size: 45
+                        color:0,0,0,1
+                    
+					BoxLayout:
+                        padding: 50
+                        HistogramView:
+							roomname:"Blk59_L9"				
