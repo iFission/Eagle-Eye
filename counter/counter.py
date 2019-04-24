@@ -1,4 +1,4 @@
-import os
+import sys, os
 import time
 
 import cv2
@@ -10,6 +10,7 @@ from pprint import pprint
 from tqdm import tqdm
 import numpy as np
 
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import backend
 
 # check opencv has been successfully imported
