@@ -19,7 +19,7 @@ def get_weekday_minutes(timestamp=-1):
     return weekday, minutes
 
 
-WEEKDAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thuresday', 'Friday', 'Saturday', 'Sunday']
+WEEKDAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 
 def convert_input(data):
     train_set = {}
