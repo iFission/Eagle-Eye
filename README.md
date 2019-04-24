@@ -58,6 +58,10 @@ requirements:
 
 `cd App; python main.py`
 
+Since the app is designed for mobile devices, it may not display correctly on PC
+
+Set monitor scale to *100%* and orientation to *portrait* to avoid such issue
+
 #### To build for android
 
 ```
